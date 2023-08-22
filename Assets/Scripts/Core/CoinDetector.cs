@@ -6,18 +6,25 @@
     public class CoinDetector : MonoBehaviour
     {
         public UnityEvent<int> OnCollectPoint;
-        public int PlayerPoints { get; private set; }
+        public UnityEvent<int> OnGetTotalPoints;
 
+        private int _playerPoints;
+
+
+        public void CountTotalPoints()
+        {
+            OnGetTotalPoints?.Invoke(_playerPoints);
+        }
 
         public void CollectCoin(int points)
         {
-            PlayerPoints += points;
-            OnCollectPoint?.Invoke(PlayerPoints);
+            _playerPoints += points;
+            OnCollectPoint?.Invoke(_playerPoints);
         }
 
         private void Start()
         {
-            PlayerPoints = 0;
+            _playerPoints = 0;
         }
 
     }
