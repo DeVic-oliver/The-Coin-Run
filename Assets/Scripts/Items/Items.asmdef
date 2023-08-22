@@ -1,8 +1,8 @@
 {
-    "name": "CoreScripts",
+    "name": "Items",
     "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:82d68d0fce7b79f47bd66e2c6ac5183a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
