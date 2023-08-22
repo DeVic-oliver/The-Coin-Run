@@ -13,8 +13,14 @@ namespace Assets.Scripts.Items
         {
             if (other.TryGetComponent<CoinDetector>(out var coinDetector))
             {
-                coinDetector.CollectCoin();
+                coinDetector.CollectCoin(_coinPoints);
+                gameObject.SetActive(false);
             }    
+        }
+
+        private void OnDisable()
+        {
+            //return to pool
         }
 
     }
