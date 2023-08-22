@@ -24,12 +24,6 @@
             return map.FindAction("Vertical Movement");
         }
 
-        public InputAction FetchJumpInputAction()
-        {
-            InputActionMap map = FetchMovementActionMap();
-            return map.FindAction("Jump");
-        }
-
         private InputActionMap FetchMovementActionMap()
         {
             return _actionAsset.FindActionMap("Movement");
