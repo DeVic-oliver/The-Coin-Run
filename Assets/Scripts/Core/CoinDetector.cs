@@ -1,13 +1,24 @@
 ﻿namespace Assets.Scripts.Core
 {
-    using System.Collections;
     using UnityEngine;
+    using UnityEngine.Events;
 
     public class CoinDetector : MonoBehaviour
     {
-        public void CollectCoin()
+        public UnityEvent<int> OnCollectPoint;
+
+        private int _playerPoints;
+
+
+        public void CollectCoin(int points)
         {
-            Debug.Log("Collected");
+            _playerPoints += points;
+            OnCollectPoint?.Invoke(_playerPoints);
+        }
+
+        private void Start()
+        {
+            _playerPoints = 0;
         }
 
     }
