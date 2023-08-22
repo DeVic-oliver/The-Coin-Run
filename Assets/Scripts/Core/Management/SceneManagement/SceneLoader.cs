@@ -6,8 +6,6 @@
     {
         public int CurrentSceneBuildIndex { get; private set; }
 
-        private readonly int _fallbackSceneBuildIndex = 0;
-
 
         public SceneLoader() 
         {
