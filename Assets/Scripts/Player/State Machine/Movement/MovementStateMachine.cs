@@ -10,6 +10,7 @@
         public Running RunningState;
         public Jumping JumpingState;
 
+        [SerializeField] private MovementActionsParser _actions;
         [SerializeField] private Rigidbody _rigdbody;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _jumpThrust;
