@@ -5,60 +5,40 @@
     
     public class MovementStateMachine : MonoBehaviour
     {
-
         public Standby StandbyState;
         public Running RunningState;
-        public Jumping JumpingState;
 
         [SerializeField] private MovementActionsParser _actions;
-        [SerializeField] private Rigidbody _rigdbody;
+        [SerializeField] private Transform _playerTransform;
         [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _jumpThrust;
-        [SerializeField] private int _jumpLimit = 1;
-        private int _currentJumpsToUse;
-
+        [SerializeField] private float _rotationSpeed;
+        
         private MoveStateBase _currentState;
 
-
-        public void DecrementJumpsToUse()
-        {
-            if(_currentJumpsToUse > 0)
-                _currentJumpsToUse--;
-        }
-
-        public void ResetJumpsToUse()
-        {
-            _currentJumpsToUse = _jumpLimit;
-        }
-
-        public int GetJumpsToUse()
-        {
-            return _currentJumpsToUse;
-        }
-
-        public float GetJumpThurst()
-        {
-            return _jumpThrust;
-        }
 
         public float GetMoveSpeed()
         {
             return _moveSpeed;
         }
 
-        public bool HasJumpActionMade()
+        public float GetRotationSpeed()
         {
-            return _actions.HasJumpActionMade();
+            return _rotationSpeed;
         }
 
         public bool IsRunning()
         {
-            return (GetVelocity().x != 0 || GetVelocity().z != 0);
+            return (GetRotationInputValue() != 0 || GetDirectionInputValue() != 0);
         }
 
-        public Vector3 GetVelocity()
+        public float GetRotationInputValue() 
         {
-            return _actions.PlayerVelocity;
+            return _actions.HorizontalActionValue;
+        }
+
+        public float GetDirectionInputValue()
+        {
+            return _actions.VerticalActionValue;
         }
 
         public void SwitchState(MoveStateBase newState)
@@ -74,15 +54,13 @@
 
         private void InitializeStates()
         {
-            StandbyState = new Standby(this, _rigdbody);
-            RunningState = new Running(this, _rigdbody);
-            JumpingState = new Jumping(this, _rigdbody);
+            StandbyState = new Standby(this);
+            RunningState = new Running(this, _playerTransform);
         }
 
         void Start()
         {
             SetupInitialState();
-            GeneralVariablesInit();
         }
 
         private void SetupInitialState()
@@ -91,19 +69,9 @@
             _currentState.OnEnter();
         }
 
-        private void GeneralVariablesInit()
-        {
-            _currentJumpsToUse = _jumpLimit;
-        }
-
         void Update()
         {
             _currentState.OnUpdate();
-        }
-
-        private void FixedUpdate()
-        {
-            _currentState.OnFixedUpdate();
         }
     }
 }
