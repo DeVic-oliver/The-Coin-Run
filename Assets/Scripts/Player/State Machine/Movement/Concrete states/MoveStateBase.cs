@@ -1,13 +1,16 @@
 ﻿namespace Assets.Scripts.Player.State_Machine.Movement
 {
+    using UnityEngine;
+    
     public abstract class MoveStateBase
     {
-        private MovementStateMachine _stateMachine;
+        protected MovementStateMachine _stateMachine;
+        protected Rigidbody _rigidbody;
 
-
-        public MoveStateBase(MovementStateMachine stateMachine) 
+        public MoveStateBase(MovementStateMachine stateMachine, Rigidbody rigidbody) 
         {
             _stateMachine = stateMachine;
+            _rigidbody = rigidbody;
         }
 
         public abstract void OnEnter();
