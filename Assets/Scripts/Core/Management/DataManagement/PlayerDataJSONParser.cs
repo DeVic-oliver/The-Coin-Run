@@ -3,16 +3,22 @@
     using System.IO;
     using UnityEngine;
     
-    public class PlayerDataJSONParser
+    public static class PlayerDataJSONParser
     {
+        public static int GetBestScore()
+        {
+            BestScoreData bestScore = GetBestScoreDataFromJSON();
+            return bestScore.Points;
+        }
+
         public static void SaveBestscore(int totalScore) 
         {
-            BestScoreData bestScore = GetBestScoreFromJSON();
+            BestScoreData bestScore = GetBestScoreDataFromJSON();
             if(bestScore.Points < totalScore)
                 OveverwriteBestScorePoints(bestScore, totalScore);
         }
 
-        public static BestScoreData GetBestScoreFromJSON()
+        private static BestScoreData GetBestScoreDataFromJSON()
         {
             string path = GetJSONFilePath();
             string json = File.ReadAllText(path);
