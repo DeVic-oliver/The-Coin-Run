@@ -1,48 +1,42 @@
-﻿using UnityEngine;
-
-namespace Assets.Scripts.Player.State_Machine.Movement
+﻿namespace Assets.Scripts.Player.State_Machine.Movement
 {
+    using UnityEngine;
+
     public class Running : MoveStateBase
     {
-        public Running(MovementStateMachine stateMachine, Rigidbody rigidbody) : base(stateMachine, rigidbody)
+        private Transform _playerTransform;
+
+
+        public Running(MovementStateMachine stateMachine, Transform playerTransform) : base(stateMachine)
         {
+            _playerTransform = playerTransform;
         }
 
         public override void OnEnter()
         {
         }
 
-        public override void OnFixedUpdate()
-        {
-            float yVelocity = _rigidbody.velocity.y;
-            _rigidbody.velocity = new Vector3(GetMovementVelocity().x, yVelocity, GetMovementVelocity().z);
-        }
-
-        private Vector3 GetMovementVelocity()
-        {
-            float xVelocity = _stateMachine.GetVelocity().x;
-            float zVelocity = _stateMachine.GetVelocity().z;
-            Vector3 velocity = new Vector3(xVelocity, 0, zVelocity) * GetFixedDeltaTimeMultipliedBySpeed();
-            return velocity;
-        }
-
-        private float GetFixedDeltaTimeMultipliedBySpeed()
-        {
-            return Time.fixedDeltaTime * _stateMachine.GetMoveSpeed();
-        }
-
         public override void OnUpdate()
         {
+            Vector3 translationDirection = GetTranslationDirection();
+            _playerTransform.Translate(translationDirection);
+
+            Vector3 eulers = GetRotationEulers();
+            _playerTransform.Rotate(eulers);
+
             if (!_stateMachine.IsRunning())
-            {
                 _stateMachine.SwitchState(_stateMachine.StandbyState);
-            }
-
-            if (_stateMachine.HasJumpActionMade())
-            {
-                _stateMachine.SwitchState(_stateMachine.JumpingState);
-            }
-
         }
+
+        private Vector3 GetTranslationDirection()
+        {
+            return Vector3.forward * _stateMachine.GetDirectionInputValue() * _stateMachine.GetMoveSpeed() * Time.deltaTime;
+        }
+
+        private Vector3 GetRotationEulers()
+        {
+            return Vector3.up * _stateMachine.GetRotationInputValue() * _stateMachine.GetRotationSpeed() * Time.deltaTime;
+        }
+
     }
 }
