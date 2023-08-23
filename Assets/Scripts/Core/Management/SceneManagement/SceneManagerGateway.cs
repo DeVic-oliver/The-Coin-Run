@@ -2,9 +2,13 @@
 {
     using System.Collections;
     using UnityEngine;
+    using UnityEngine.Events;
 
     public class SceneManagerGateway : MonoBehaviour
     {
+        public UnityEvent OnPause;
+        public UnityEvent OnResumeGame;
+
         private ScenePauser _scenePauser;
         private SceneLoader _sceneLoader;
 
@@ -16,17 +20,32 @@
 
         public void PauseGame()
         {
+            OnPause?.Invoke();
             _scenePauser.PauseScene();
         }
 
         public void UnpauseGame()
         {
+            OnResumeGame?.Invoke();
             _scenePauser.UnpauseScene();
         }
 
         public void TogglePauseState()
         {
+            InvokeEventsAccordinglyWithNextState();
             _scenePauser.TogglePauseScene();
+        }
+
+        private void InvokeEventsAccordinglyWithNextState()
+        {
+            if (_scenePauser.IsGamePaused())
+            {
+                OnResumeGame?.Invoke();
+            }
+            else
+            {
+                OnPause?.Invoke();
+            }
         }
 
         public void RestartSceneImmediately()
