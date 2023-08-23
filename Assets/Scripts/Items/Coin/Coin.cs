@@ -6,8 +6,17 @@ namespace Assets.Scripts.Items
     [RequireComponent(typeof(Collider))]
     public class Coin : MonoBehaviour
     {
+        public CoinSpawner Spawner { get; set; }
+
         [SerializeField] private int _coinPoints;
 
+        [SerializeField] private float _rotationSpeed = 35f;
+
+
+        private void Update()
+        {
+            transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime); 
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -20,7 +29,8 @@ namespace Assets.Scripts.Items
 
         private void OnDisable()
         {
-            //return to pool
+            if (Spawner != null)
+                Spawner.BackToPool(this);
         }
 
     }
