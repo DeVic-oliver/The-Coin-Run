@@ -1,13 +1,14 @@
 namespace Assets.Scripts.Multiplayer
 {
     using Photon.Pun;
+    using Photon.Realtime;
     using UnityEngine;
 
 
-    public class Launcher : MonoBehaviour
+    public class Launcher : MonoBehaviourPunCallbacks
     {
         #region Private Serializable Fields
-
+        [SerializeField] private int _maxNumberOfPlayers = 2;
         #endregion
 
         #region Private Fields
@@ -20,6 +21,31 @@ namespace Assets.Scripts.Multiplayer
         #endregion
 
         #region MonoBehaviour CallBacks
+
+        public override void OnConnectedToMaster()
+        {
+            Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
+
+            PhotonNetwork.JoinRandomRoom();
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            Debug.LogWarningFormat("PUN Basics Tutorial/Launcher: OnDisconnected() was called by PUN with reason {0}", cause);
+        }
+
+        public override void OnJoinRandomFailed(short returnCode, string message)
+        {
+            Debug.Log("PUN Basics Tutorial/Launcher:OnJoinRandomFailed() was called by PUN. No random room available, so we create one.\nCalling: PhotonNetwork.CreateRoom");
+            RoomOptions options = new RoomOptions() { MaxPlayers = _maxNumberOfPlayers };
+            PhotonNetwork.CreateRoom(null, options);
+        }
+
+        public override void OnJoinedRoom()
+        {
+            Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+        }
+
 
         /// <summary>
         /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
