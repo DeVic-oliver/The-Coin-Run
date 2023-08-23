@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 297248846258933867}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &8462314955165635767
 SphereCollider:
@@ -49,7 +49,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinPoints: 1
+  _rotationSpeed: 80
 --- !u!1 &8372342442900049192
 GameObject:
   m_ObjectHideFlags: 0
