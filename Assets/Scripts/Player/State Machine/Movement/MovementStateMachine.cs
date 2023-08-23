@@ -11,10 +11,8 @@
         [SerializeField] private MovementActionsParser _actions;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _rotationSpeed;
         [SerializeField] private PlayerAnimatorHandler _animator;
         [SerializeField] private Rigidbody _rigidbody;
-        private Vector3 _moveRotation;
 
         private MoveStateBase _currentState;
 
@@ -34,19 +32,9 @@
             return _moveSpeed;
         }
 
-        public float GetRotationSpeed()
-        {
-            return _rotationSpeed;
-        }
-
         public bool IsRunning()
         {
             return (GetDirectionInputValue() != 0);
-        }
-
-        public float GetRotationInputValue() 
-        {
-            return _actions.HorizontalActionValue;
         }
 
         public float GetDirectionInputValue()
@@ -84,14 +72,11 @@
 
         void Update()
         {
-            _moveRotation = GetRotationInputValue() * Vector3.up * GetRotationSpeed();
             _currentState.OnUpdate();
         }
 
         private void FixedUpdate()
         {
-            Quaternion rotation = _rigidbody.rotation * Quaternion.Euler(_moveRotation * Time.fixedDeltaTime);
-            _rigidbody.MoveRotation(rotation);
             _currentState.OnFixedUpdate();
         }
 
