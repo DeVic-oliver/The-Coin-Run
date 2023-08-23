@@ -37,12 +37,17 @@
                 yield return new WaitForSeconds(secondsToSpawn);
                 if (_coinPool.CurrentActiveAtMoment < _coinPool.MaxSize)
                 {
-                    Coin coin = _coinPool.Pool.Get();
-                    coin.Spawner = this;
-                    coin.gameObject.transform.position = GetRandomCoordinateYoSpawn();
-                    coin.gameObject.SetActive(true);
+                    GetCoinFromPoolThenActiveIt();
                 }
             }
+        }
+
+        private void GetCoinFromPoolThenActiveIt()
+        {
+            Coin coin = _coinPool.Pool.Get();
+            coin.Spawner = this;
+            coin.gameObject.transform.position = GetRandomCoordinateYoSpawn();
+            coin.gameObject.SetActive(true);
         }
 
         private Vector3 GetRandomCoordinateYoSpawn()
