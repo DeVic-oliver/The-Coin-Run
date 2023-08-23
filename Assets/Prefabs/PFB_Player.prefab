@@ -219,7 +219,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3466011539755256893}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -237,7 +237,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!1 &8887388060090526679
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 4650973668323619214}
   - component: {fileID: 6371265383181565861}
   - component: {fileID: 3236591955458193349}
+  - component: {fileID: 3155979685748579085}
   m_Layer: 0
   m_Name: Movement
   m_TagString: Untagged
@@ -309,9 +310,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _actions: {fileID: 3236591955458193349}
   _playerTransform: {fileID: 7024928305379572263}
-  _moveSpeed: 15
-  _rotationSpeed: 100
-  _animator: {fileID: 0}
+  _moveSpeed: 1000
+  _animator: {fileID: 4428261221710264021}
+  _rigidbody: {fileID: 5820819599456873728}
 --- !u!114 &3236591955458193349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +326,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actions: {fileID: -944628639613478452, guid: dd80b42b06f36dc4f956885c59d6b975, type: 3}
+--- !u!114 &3155979685748579085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887388060090526679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2486f177e28f9a847a9d9ab71d23b459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actions: {fileID: 3236591955458193349}
+  _rotationSpeed: 150
+  _rigidbody: {fileID: 5820819599456873728}
 --- !u!1001 &2841293802637850913
 PrefabInstance:
   m_ObjectHideFlags: 0
