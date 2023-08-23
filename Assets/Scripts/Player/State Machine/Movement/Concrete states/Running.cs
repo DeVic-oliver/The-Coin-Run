@@ -5,38 +5,38 @@
     public class Running : MoveStateBase
     {
         private Transform _playerTransform;
+        private Rigidbody _rigidbody;
+        private Vector3 _movePosition;
+        private float _maxMoveSpeed = 10f;
 
 
-        public Running(MovementStateMachine stateMachine, Transform playerTransform) : base(stateMachine)
+        public Running(MovementStateMachine stateMachine, Transform playerTransform, Rigidbody rigidbody) : base(stateMachine)
         {
             _playerTransform = playerTransform;
+            _rigidbody = rigidbody;
         }
 
         public override void OnEnter()
         {
+            _stateMachine.SetRunningAnimationTrue();
+        }
+
+        public override void OnFixedUpdate()
+        {   
+            Vector3 smoothedPosition = _playerTransform.TransformDirection(_movePosition) * Time.fixedDeltaTime;
+            if( _rigidbody.velocity.magnitude < _maxMoveSpeed) 
+                _rigidbody.AddForce(smoothedPosition);
         }
 
         public override void OnUpdate()
         {
-            Vector3 translationDirection = GetTranslationDirection();
-            _playerTransform.Translate(translationDirection);
-
-            Vector3 eulers = GetRotationEulers();
-            _playerTransform.Rotate(eulers);
+            _movePosition =  _stateMachine.GetDirectionInputValue() * Vector3.forward * _stateMachine.GetMoveSpeed();
 
             if (!_stateMachine.IsRunning())
+            {
+                _rigidbody.velocity = Vector3.zero;
                 _stateMachine.SwitchState(_stateMachine.StandbyState);
+            }
         }
-
-        private Vector3 GetTranslationDirection()
-        {
-            return Vector3.forward * _stateMachine.GetDirectionInputValue() * _stateMachine.GetMoveSpeed() * Time.deltaTime;
-        }
-
-        private Vector3 GetRotationEulers()
-        {
-            return Vector3.up * _stateMachine.GetRotationInputValue() * _stateMachine.GetRotationSpeed() * Time.deltaTime;
-        }
-
     }
 }

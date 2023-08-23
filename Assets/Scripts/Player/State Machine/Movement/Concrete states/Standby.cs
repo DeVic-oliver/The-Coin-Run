@@ -9,6 +9,11 @@
 
         public override void OnEnter()
         {
+            _stateMachine.SetRunningAnimationToFalse();
+        }
+
+        public override void OnFixedUpdate()
+        {
         }
 
         public override void OnUpdate()

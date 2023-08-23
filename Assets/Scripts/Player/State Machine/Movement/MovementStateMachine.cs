@@ -11,29 +11,30 @@
         [SerializeField] private MovementActionsParser _actions;
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _rotationSpeed;
-        
+        [SerializeField] private PlayerAnimatorHandler _animator;
+        [SerializeField] private Rigidbody _rigidbody;
+
         private MoveStateBase _currentState;
 
+
+        public void SetRunningAnimationTrue()
+        {
+            _animator.SetIsRunningParamToTrue();
+        }
+        
+        public void SetRunningAnimationToFalse()
+        {
+            _animator.SetIsRunningParamToFalse();
+        }
 
         public float GetMoveSpeed()
         {
             return _moveSpeed;
         }
 
-        public float GetRotationSpeed()
-        {
-            return _rotationSpeed;
-        }
-
         public bool IsRunning()
         {
-            return (GetRotationInputValue() != 0 || GetDirectionInputValue() != 0);
-        }
-
-        public float GetRotationInputValue() 
-        {
-            return _actions.HorizontalActionValue;
+            return (GetDirectionInputValue() != 0);
         }
 
         public float GetDirectionInputValue()
@@ -55,7 +56,7 @@
         private void InitializeStates()
         {
             StandbyState = new Standby(this);
-            RunningState = new Running(this, _playerTransform);
+            RunningState = new Running(this, _playerTransform, _rigidbody);
         }
 
         void Start()
@@ -73,5 +74,11 @@
         {
             _currentState.OnUpdate();
         }
+
+        private void FixedUpdate()
+        {
+            _currentState.OnFixedUpdate();
+        }
+
     }
 }
