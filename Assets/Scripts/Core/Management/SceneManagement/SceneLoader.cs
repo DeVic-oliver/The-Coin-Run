@@ -34,5 +34,10 @@
             Application.Quit();
         }
 
+        public void GoToSinglePlayer()
+        {
+            SceneManager.LoadScene(1);
+        }
+
     }
 }

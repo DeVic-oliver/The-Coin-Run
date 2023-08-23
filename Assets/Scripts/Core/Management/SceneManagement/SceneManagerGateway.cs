@@ -13,6 +13,11 @@
         private SceneLoader _sceneLoader;
 
         
+        public void GoToSinglePlayerArena()
+        {
+            _sceneLoader.GoToSinglePlayer();
+        }
+
         public void BackToLobby()
         {
             _sceneLoader.BackToLobby();
