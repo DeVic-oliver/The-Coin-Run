@@ -2,6 +2,7 @@ namespace Assets.Scripts.Multiplayer
 {
     using Photon.Pun;
     using Photon.Realtime;
+    using TMPro;
     using UnityEngine;
 
 
@@ -9,6 +10,7 @@ namespace Assets.Scripts.Multiplayer
     {
         #region Private Serializable Fields
         [SerializeField] private int _maxNumberOfPlayers = 2;
+        [SerializeField] private GameObject _connectionPanel;
         #endregion
 
         #region Private Fields
@@ -62,7 +64,7 @@ namespace Assets.Scripts.Multiplayer
         /// </summary>
         void Start()
         {
-            Connect();
+            _connectionPanel.SetActive(false);
         }
 
         #endregion
@@ -77,6 +79,7 @@ namespace Assets.Scripts.Multiplayer
         /// </summary>
         public void Connect()
         {
+            _connectionPanel.SetActive(true);
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
