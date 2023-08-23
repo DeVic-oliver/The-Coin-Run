@@ -13,8 +13,10 @@
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private PlayerAnimatorHandler _animator;
+        [SerializeField] private Rigidbody _rigidbody;
         
         private MoveStateBase _currentState;
+
 
         public void SetRunningAnimationTrue()
         {
@@ -59,14 +61,13 @@
 
         private void Awake()
         {
-            _moveSpeed = _moveSpeed;
             InitializeStates();
         }
 
         private void InitializeStates()
         {
             StandbyState = new Standby(this);
-            RunningState = new Running(this, _playerTransform);
+            RunningState = new Running(this, _playerTransform, _rigidbody);
         }
 
         void Start()
@@ -83,6 +84,11 @@
         void Update()
         {
             _currentState.OnUpdate();
+        }
+
+        private void FixedUpdate()
+        {
+            _currentState.OnFixedUpdate();
         }
 
     }

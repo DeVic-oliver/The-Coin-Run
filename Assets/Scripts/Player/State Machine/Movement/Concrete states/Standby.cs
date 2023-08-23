@@ -12,6 +12,10 @@
             _stateMachine.SetRunningAnimationToFalse();
         }
 
+        public override void OnFixedUpdate()
+        {
+        }
+
         public override void OnUpdate()
         {
             SwtichToRunningStateIfItsRunning();

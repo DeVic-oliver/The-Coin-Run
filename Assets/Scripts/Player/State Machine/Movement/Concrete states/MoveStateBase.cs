@@ -13,5 +13,7 @@
         
         public abstract void OnUpdate();
 
+        public abstract void OnFixedUpdate();
+
     }
 }

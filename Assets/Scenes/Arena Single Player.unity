@@ -5374,6 +5374,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7024928305379572263, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
   m_PrefabInstance: {fileID: 3242479112081081450}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1534894342 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+  m_PrefabInstance: {fileID: 3242479112081081450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1627298230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7835775826349653316, guid: 1b078e6eb2fcd3f418d385cf30fcc93a, type: 3}
@@ -7883,10 +7888,50 @@ PrefabInstance:
       propertyPath: OnGetTotalPoints.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 140714664}
+    - target: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: m_ImplicitTensor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820819599456873728, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6371265383181565861, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
       propertyPath: _animator
       value: 
       objectReference: {fileID: 958607082}
+    - target: {fileID: 6371265383181565861, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: _moveSpeed
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 6371265383181565861, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 1534894342}
+    - target: {fileID: 6371265383181565861, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: _rotationSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7024928305379572263, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
       propertyPath: m_RootOrder
       value: -1
