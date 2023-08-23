@@ -31,12 +31,12 @@
         
         private IEnumerator SpawnCoins()
         {
-            float secondsToSpawn = 1.5f;
+            float secondsToSpawn = 0.8f;
             while (true)
             {
                 yield return new WaitForSeconds(secondsToSpawn);
-                if(_coinPool.CurrentActiveAtMoment < _coinPool.MaxSize) 
-                { 
+                if (_coinPool.CurrentActiveAtMoment < _coinPool.MaxSize)
+                {
                     Coin coin = _coinPool.Pool.Get();
                     coin.Spawner = this;
                     coin.gameObject.transform.position = GetRandomCoordinateYoSpawn();
@@ -47,7 +47,7 @@
 
         private Vector3 GetRandomCoordinateYoSpawn()
         {
-            int index = Random.Range(0, _coordinatesToSpawn.Count - 1);
+            int index = Random.Range(0, _coordinatesToSpawn.Count);
 
             float minX = GetMinCoordinatesFrom(index).x;
             float maxX = GetMaxCoordinatesFrom(index).x;
