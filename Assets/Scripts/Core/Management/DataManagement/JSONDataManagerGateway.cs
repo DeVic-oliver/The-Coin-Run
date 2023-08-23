@@ -15,6 +15,11 @@
 
         private void Awake()
         {
+            UpdateBestScoreTMP();
+        }
+
+        public void UpdateBestScoreTMP()
+        {
             int previousScore = PlayerDataJSONParser.GetBestScore();
             _bestScoreTMP.text = $"{previousScore} pts";
         }

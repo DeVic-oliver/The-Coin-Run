@@ -16,7 +16,6 @@
         
         private MoveStateBase _currentState;
 
-
         public void SetRunningAnimationTrue()
         {
             _animator.SetIsRunningParamToTrue();
@@ -60,6 +59,7 @@
 
         private void Awake()
         {
+            _moveSpeed = _moveSpeed;
             InitializeStates();
         }
 
@@ -84,5 +84,6 @@
         {
             _currentState.OnUpdate();
         }
+
     }
 }
