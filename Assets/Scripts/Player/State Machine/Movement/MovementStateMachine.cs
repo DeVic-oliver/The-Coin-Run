@@ -12,9 +12,20 @@
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _rotationSpeed;
+        [SerializeField] private PlayerAnimatorHandler _animator;
         
         private MoveStateBase _currentState;
 
+
+        public void SetRunningAnimationTrue()
+        {
+            _animator.SetIsRunningParamToTrue();
+        }
+        
+        public void SetRunningAnimationToFalse()
+        {
+            _animator.SetIsRunningParamToFalse();
+        }
 
         public float GetMoveSpeed()
         {

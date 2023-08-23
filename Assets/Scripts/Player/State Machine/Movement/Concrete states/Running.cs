@@ -14,6 +14,7 @@
 
         public override void OnEnter()
         {
+            _stateMachine.SetRunningAnimationTrue();
         }
 
         public override void OnUpdate()
