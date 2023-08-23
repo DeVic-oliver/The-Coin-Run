@@ -9,6 +9,11 @@
         private SceneLoader _sceneLoader;
 
         
+        public bool IsGamePaused()
+        {
+            return _scenePauser.IsGamePaused();
+        }
+
         public void PauseGame()
         {
             _scenePauser.PauseScene();
