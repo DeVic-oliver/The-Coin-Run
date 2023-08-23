@@ -13,6 +13,16 @@
         private SceneLoader _sceneLoader;
 
         
+        public void BackToLobby()
+        {
+            _sceneLoader.BackToLobby();
+        }
+
+        public void QuitGame()
+        {
+            _sceneLoader.QuitGame();
+        }
+
         public bool IsGamePaused()
         {
             return _scenePauser.IsGamePaused();
