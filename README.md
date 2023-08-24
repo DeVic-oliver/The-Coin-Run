@@ -10,8 +10,15 @@ Tempo da partida single player e multiplayer:
 
 # DEPENDÊNCIAS e CONFIGURAÇÕES
 - Versão da Unity 2022.3.4f1.
+- Testado em Windows.
 - Instalar o Game em desktops distintos.
 - O game está rodando com o IP da minha aplicação na plataforma do PHOTON, ficará online até o fim do processo.
+
+# BUILD
+O projeto já está configurado para ser compilado, basta apenas seguir o procedimento de build padrão da Unity.
+- File
+- Build Settings
+- Build
 
 # CONSIDERAÇÕES:
 Agradeço pela oportunidade, foi um excelente desafio que me permitiu explorar e conhecer o desenvolvimento multiplayer.
