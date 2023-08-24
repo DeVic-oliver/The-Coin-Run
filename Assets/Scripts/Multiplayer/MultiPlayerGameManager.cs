@@ -37,6 +37,14 @@
             if (PhotonNetwork.IsMasterClient)
                 LoadArena();
         }
+        
+        private void LoadArena()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+
+            PhotonNetwork.LoadLevel("Arena Multiplayer");
+        }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
@@ -53,11 +61,8 @@
             PhotonNetwork.Disconnect();
         }
 
-        void LoadArena()
         public void ShowScoreBoard()
         {
-            if (!PhotonNetwork.IsMasterClient)
-                return;
             int masterPoints = int.Parse(_masterScoreTMP.text);
             int guestPoints = int.Parse(_guestScoreTMP.text);
 
