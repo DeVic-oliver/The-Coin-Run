@@ -1030,7 +1030,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _maxTimeInSeconds: 30
+  _maxTimeInSeconds: 60
   _gameTimerTMP: {fileID: 1715418640}
 --- !u!114 &285036469
 MonoBehaviour:

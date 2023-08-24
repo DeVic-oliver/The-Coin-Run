@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxNumberOfPlayers: 2
   _connectionPanel: {fileID: 142109316}
+  _abandonQueueButton: {fileID: 1491285997}
   _playerNick: {fileID: 1460319602}
   _connectionTMP: {fileID: 864335893}
 --- !u!4 &179577757
