@@ -10,7 +10,7 @@
         public UnityEvent<int> OnGetTotalPoints;
         public TextMeshProUGUI CoinsCollectedTMP;
 
-        public static int PlayerPoints { get; private set; }
+        public int PlayerPoints { get; private set; }
 
 
         public void CountTotalPoints()
@@ -36,6 +36,7 @@
             {
                 PlayerPoints += points;
                 photonView.RPC("SyncScore", RpcTarget.All, PlayerPoints);
+                
             }
         }
 
