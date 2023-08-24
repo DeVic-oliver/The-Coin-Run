@@ -1862,7 +1862,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 179577756}
         m_TargetAssemblyTypeName: Assets.Scripts.Multiplayer.Launcher, Multiplayer
-        m_MethodName: OnLeftRoom
+        m_MethodName: Disconnect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

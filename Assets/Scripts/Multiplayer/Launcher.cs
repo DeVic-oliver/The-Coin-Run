@@ -43,7 +43,7 @@ namespace Assets.Scripts.Multiplayer
 
         public override void OnJoinedRoom()
         {
-            _connectionTMP.text = "Waiting for players: 1/2";
+            _connectionTMP.text = $"Waiting for players: {PhotonNetwork.CurrentRoom.PlayerCount}/2";
             PhotonNetwork.NickName = _playerNick.text;
         }
 
@@ -58,6 +58,7 @@ namespace Assets.Scripts.Multiplayer
             _connectionTMP.text = "Loading...";
             yield return new WaitForSeconds(1f);
             PhotonNetwork.LoadLevel("Arena Multiplayer");
+            _connectionTMP.text = _defaultConnectionText;
         }
 
         public void Connect()
@@ -77,9 +78,9 @@ namespace Assets.Scripts.Multiplayer
             }
         }
 
-        public void LeaveRoom()
+        public void Disconnect()
         {
-            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
         }
 
         void Awake()

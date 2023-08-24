@@ -996,6 +996,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1389193203}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _maxTimeInSeconds: 30
   _gameTimerTMP: {fileID: 1715418640}
 --- !u!1001 &297375888
@@ -2508,38 +2520,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606854719}
   m_CullTransparentMesh: 1
---- !u!1 &648171893
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 648171894}
-  m_Layer: 0
-  m_Name: == UI ==
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &648171894
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648171893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 966393315}
-  m_Father: {fileID: 973133572}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &665502701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,51 +3540,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &966393314
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 966393315}
-  - component: {fileID: 966393316}
-  m_Layer: 0
-  m_Name: UI Coin Points Counter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &966393315
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966393314}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 648171894}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &966393316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966393314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9909025494fd034ebffead872d66e15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentCoinsPointsTMP: {fileID: 467543553}
 --- !u!1 &973133571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,7 +3568,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 648171894}
   - {fileID: 175871904}
   m_Father: {fileID: 332776301}
   m_RootOrder: -1
@@ -7363,9 +7297,17 @@ PrefabInstance:
       value: PFB_Player
       objectReference: {fileID: 0}
     - target: {fileID: 4695475512069560230, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: CoinsCollectedTMP
+      value: 
+      objectReference: {fileID: 467543553}
+    - target: {fileID: 4695475512069560230, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
+      propertyPath: OnCollectPoint.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695475512069560230, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
       propertyPath: OnCollectPoint.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 966393316}
+      objectReference: {fileID: 0}
     - target: {fileID: 4695475512069560230, guid: 80c9c9b56d0664a49a3befecc90fb54e, type: 3}
       propertyPath: OnGetTotalPoints.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

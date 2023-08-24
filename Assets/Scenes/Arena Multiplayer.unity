@@ -3937,7 +3937,7 @@ MonoBehaviour:
       - m_Target: {fileID: 285036469}
         m_TargetAssemblyTypeName: Assets.Scripts.Multiplayer.MultiPlayerGameManager,
           Multiplayer
-        m_MethodName: LeaveRoom
+        m_MethodName: Disconnect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -31,25 +31,25 @@
 
 
 
-        public override void OnLeftRoom()
-        {
-            _sceneGateway.BackToLobby();
-        }
-
         public override void OnPlayerEnteredRoom(Player other)
         {
             if (PhotonNetwork.IsMasterClient)
                 LoadArena();
         }
 
-        public override void OnPlayerLeftRoom(Player other)
+        public override void OnPlayerLeftRoom(Player otherPlayer)
         {
-            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
         }
 
-        public void LeaveRoom()
+        public override void OnDisconnected(DisconnectCause cause)
         {
-            PhotonNetwork.LeaveRoom();
+            _sceneGateway.BackToLobby();
+        }
+
+        public void Disconnect()
+        {
+            PhotonNetwork.Disconnect();
         }
 
         void LoadArena()

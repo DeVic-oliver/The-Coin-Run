@@ -39,7 +39,14 @@
                 if (_coinPool.CurrentActiveAtMoment < _coinPool.MaxSize)
                 {
                     Vector3 randomPosition = GetRandomCoordinateYoSpawn();
-                    photonView.RPC("GetCoinFromPoolThenActiveIt", RpcTarget.All, randomPosition);
+                    if(PhotonNetwork.IsConnected)
+                    {
+                        photonView.RPC("GetCoinFromPoolThenActiveIt", RpcTarget.All, randomPosition);
+                    }
+                    else
+                    {
+                        GetCoinFromPoolThenActiveIt(randomPosition);
+                    }
                 }
             }
         }

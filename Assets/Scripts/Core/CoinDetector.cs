@@ -7,7 +7,6 @@
 
     public class CoinDetector : MonoBehaviourPun
     {
-        public UnityEvent<int> OnCollectPoint;
         public UnityEvent<int> OnGetTotalPoints;
         public TextMeshProUGUI CoinsCollectedTMP;
 
@@ -21,6 +20,18 @@
 
         public void CollectCoin(int points)
         {
+            if (PhotonNetwork.IsConnected)
+            {
+                UpdateMultiplayerTMP(points);
+            }
+            else
+            {
+                UpdateSinglePlayerTMP(points);
+            }
+        }
+
+        private void UpdateMultiplayerTMP(int points)
+        {
             if (photonView.IsMine)
             {
                 PlayerPoints += points;
@@ -32,6 +43,12 @@
         private void SyncScore(int points)
         {
             CoinsCollectedTMP.text = points.ToString();
+        }
+
+        private void UpdateSinglePlayerTMP(int points)
+        {
+            PlayerPoints += points;
+            CoinsCollectedTMP.text = PlayerPoints.ToString();
         }
 
         private void Start()
