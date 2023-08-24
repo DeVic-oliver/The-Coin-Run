@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664d2917eff35d34ca1c39968b32968c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coin: {fileID: 4049643218078636789, guid: 9453722a8ee316c4b9e206686e5782b6, type: 3}
+  _coin: {fileID: 2611820107566149138, guid: 9453722a8ee316c4b9e206686e5782b6, type: 3}
   _coordinatesToSpawn:
   - MinCoord: {x: -18, y: 3, z: -5}
     MaxCoord: {x: 28, y: 3, z: 22}
@@ -594,7 +594,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 1
+  Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
@@ -897,10 +897,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGateway: {fileID: 285036467}
   _spawn1: {fileID: 1145594087}
+  _masterNickTMP: {fileID: 1397085479}
+  _masterPrefabResource: {fileID: 9150176848588468497, guid: bf01a73e13fdb5241b55e2263f26040b, type: 3}
+  _masterScoreTMP: {fileID: 467543553}
   _spawn2: {fileID: 2038272867}
-  _playerPrefabResource: {fileID: 2869304342505889827, guid: afae824b78f3bf7498cd5581e1fc1a32, type: 3}
-  _masterNickName: {fileID: 1397085479}
-  _guestNickName: {fileID: 1251879465}
+  _guestNickTMP: {fileID: 1251879465}
+  _guestPrefabResource: {fileID: 4147447397079284563, guid: d3629ae2dca35c4498b6d05bed4532f5, type: 3}
+  _guestScoreTMP: {fileID: 1860340022}
 --- !u!1001 &297375888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1677,8 +1680,9 @@ GameObject:
   - component: {fileID: 467543552}
   - component: {fileID: 467543554}
   - component: {fileID: 467543553}
+  - component: {fileID: 467543555}
   m_Layer: 0
-  m_Name: Current Coins Points
+  m_Name: Master Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1801,6 +1805,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467543551}
   m_CullTransparentMesh: 1
+--- !u!114 &467543555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467543551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &481669911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2314,38 +2340,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606854719}
   m_CullTransparentMesh: 1
---- !u!1 &648171893
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 648171894}
-  m_Layer: 0
-  m_Name: == UI ==
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &648171894
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648171893}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 966393315}
-  m_Father: {fileID: 973133572}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &665502701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,51 +3399,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 58.58, y: 275, z: 0}
---- !u!1 &966393314
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 966393315}
-  - component: {fileID: 966393316}
-  m_Layer: 0
-  m_Name: UI Coin Points Counter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &966393315
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966393314}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 648171894}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &966393316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966393314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9909025494fd034ebffead872d66e15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentCoinsPointsTMP: {fileID: 467543553}
 --- !u!1 &973133571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3478,7 +3427,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 648171894}
   - {fileID: 175871904}
   m_Father: {fileID: 332776301}
   m_RootOrder: -1
@@ -6362,8 +6310,9 @@ GameObject:
   - component: {fileID: 1860340021}
   - component: {fileID: 1860340023}
   - component: {fileID: 1860340022}
+  - component: {fileID: 1860340024}
   m_Layer: 0
-  m_Name: Current Coins Points
+  m_Name: Guest Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6486,6 +6435,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860340020}
   m_CullTransparentMesh: 1
+--- !u!114 &1860340024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860340020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &1910791152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4121671493948517082, guid: 7d900b2c4aa397640adfa60283e93a4d, type: 3}
