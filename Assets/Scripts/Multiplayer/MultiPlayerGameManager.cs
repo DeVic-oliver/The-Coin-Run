@@ -11,7 +11,6 @@
     public class MultiPlayerGameManager : MonoBehaviourPunCallbacks
     {
         [SerializeField] private SceneManagerGateway _sceneGateway;
-
         [SerializeField] private EndGameScoreboard _endScoreboard;
 
         [Header("Master Setup")]
@@ -30,6 +29,7 @@
         [SerializeField] private TextMeshProUGUI _guestScoreTMP;
         private CoinDetector _guestCoinDetector;
 
+        private static GameObject _host;
 
 
         public override void OnPlayerEnteredRoom(Player other)
@@ -93,9 +93,9 @@
 
         private void SetPlayerInTheirSpawnPositions()
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && _host == null)
             {
-                PhotonNetwork.Instantiate(_masterPrefabResource.name, _spawn1.position, _spawn1.rotation);
+                _host = PhotonNetwork.Instantiate(_masterPrefabResource.name, _spawn1.position, _spawn1.rotation);
             }
             else
             {
@@ -105,7 +105,6 @@
 
         private void Start()
         {
-
             _masterNickTMP.text = GetMasterPlayer().NickName;
             _guestNickTMP.text = GetGuestPlayer().NickName;
         }
@@ -119,5 +118,6 @@
         {
             return PhotonNetwork.PlayerList[1];
         }
+
     }
 }
