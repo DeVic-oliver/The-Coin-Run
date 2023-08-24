@@ -24,7 +24,7 @@
 
         private Coin CreatePooledItem()
         {
-            Coin coin = MonoBehaviour.Instantiate(_coin);
+            Coin coin = Instantiate(_coin);
             coin.gameObject.SetActive(false);
             return coin;
         }

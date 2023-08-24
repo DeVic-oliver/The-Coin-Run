@@ -1,10 +1,11 @@
 namespace Assets.Scripts.Core
 {
     using Assets.Scripts.Core.InputActions.Player;
+    using Photon.Pun;
     using UnityEngine;
     using UnityEngine.InputSystem;
 
-    public class MovementActionsParser : MonoBehaviour
+    public class MovementActionsParser : MonoBehaviourPun
     {
         public float HorizontalActionValue { get; private set; }
         public float VerticalActionValue { get; private set; }
@@ -30,6 +31,9 @@ namespace Assets.Scripts.Core
        
         void Update()
         {
+            if(photonView != null && !photonView.IsMine)
+                return;
+
             SetActionsInputValues();
         }
 
