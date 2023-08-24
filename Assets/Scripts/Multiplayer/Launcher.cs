@@ -11,6 +11,7 @@ namespace Assets.Scripts.Multiplayer
     {
         [SerializeField] private int _maxNumberOfPlayers = 2;
         [SerializeField] private GameObject _connectionPanel;
+        [SerializeField] private GameObject _abandonQueueButton;
         [SerializeField] private TextMeshProUGUI _playerNick;
         [SerializeField] private TextMeshProUGUI _connectionTMP;
 
@@ -44,12 +45,17 @@ namespace Assets.Scripts.Multiplayer
 
         public override void OnJoinedRoom()
         {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                _abandonQueueButton.SetActive(false);
+            }
             _connectionFeedback.UpdateWaitingForPlayers(GetCurrentRoomPlayersCount());
             PhotonNetwork.NickName = _playerNick.text;
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
+            _abandonQueueButton.SetActive(false);
             _connectionFeedback.UpdateWaitingForPlayers(GetCurrentRoomPlayersCount());
             StartCoroutine("LoadLevelAfter1Second");
         }
@@ -67,6 +73,7 @@ namespace Assets.Scripts.Multiplayer
             PhotonNetwork.LoadLevel("Arena Multiplayer");
             _connectionTMP.text = _defaultConnectionText;
         }
+
 
         public void Connect()
         {
@@ -99,6 +106,7 @@ namespace Assets.Scripts.Multiplayer
         void Start()
         {
             _connectionPanel.SetActive(false);
+            _abandonQueueButton.SetActive(true);
             _connectionTMP.text = _defaultConnectionText;
         }
     }
