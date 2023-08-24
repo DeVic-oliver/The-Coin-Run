@@ -14,16 +14,17 @@ namespace Assets.Scripts.Multiplayer
         [SerializeField] private TextMeshProUGUI _playerNick;
         [SerializeField] private TextMeshProUGUI _connectionTMP;
 
-        private bool isConnecting;
-
         private readonly string _defaultConnectionText = "Connecting...";
+        
+        private bool isConnecting;
+        private ConnectionLoginFeedback _connectionFeedback;
 
 
         public override void OnConnectedToMaster()
         {
             if (isConnecting)
             {
-                _connectionTMP.text = "Joining";
+                _connectionFeedback.SetConnectedMessage();
                 PhotonNetwork.JoinRandomRoom();
                 isConnecting = false;
             }
@@ -31,31 +32,37 @@ namespace Assets.Scripts.Multiplayer
 
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
-            _connectionTMP.text = "Creating Room";
+            _connectionFeedback.SetCreatingRoomMessage();
             RoomOptions options = new RoomOptions() { MaxPlayers = _maxNumberOfPlayers };
             PhotonNetwork.CreateRoom(null, options);
         }
 
         public override void OnCreatedRoom()
         {
-            _connectionTMP.text = "Room Created";
+            _connectionFeedback.SetRoomCreatedMessage();
         }
 
         public override void OnJoinedRoom()
         {
-            _connectionTMP.text = $"Waiting for players: {PhotonNetwork.CurrentRoom.PlayerCount}/2";
+            _connectionFeedback.UpdateWaitingForPlayers(GetCurrentRoomPlayersCount());
             PhotonNetwork.NickName = _playerNick.text;
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-            _connectionTMP.text = "Waiting for players: 2/2";
+            _connectionFeedback.UpdateWaitingForPlayers(GetCurrentRoomPlayersCount());
             StartCoroutine("LoadLevelAfter1Second");
+        }
+
+        private int GetCurrentRoomPlayersCount()
+        {
+            Room room = PhotonNetwork.CurrentRoom;
+            return room.PlayerCount;
         }
 
         private IEnumerator LoadLevelAfter1Second()
         {
-            _connectionTMP.text = "Loading...";
+            _connectionFeedback.SetJoiningGameMessage();
             yield return new WaitForSeconds(1f);
             PhotonNetwork.LoadLevel("Arena Multiplayer");
             _connectionTMP.text = _defaultConnectionText;
@@ -85,6 +92,7 @@ namespace Assets.Scripts.Multiplayer
 
         void Awake()
         {
+            _connectionFeedback = new ConnectionLoginFeedback(_connectionTMP, _maxNumberOfPlayers);
             PhotonNetwork.AutomaticallySyncScene = true;
         }
 
