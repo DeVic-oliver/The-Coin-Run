@@ -1,12 +1,13 @@
 namespace Assets.Scripts.Items
 {
     using Assets.Scripts.Core;
+    using Photon.Pun;
     using System.Collections;
     using UnityEngine;
     using UnityEngine.Events;
 
     [RequireComponent(typeof(Collider))]
-    public class Coin : MonoBehaviour
+    public class Coin : MonoBehaviourPun
     {
         public UnityEvent OnCollected;
 
@@ -17,6 +18,11 @@ namespace Assets.Scripts.Items
         [SerializeField] private float _rotationSpeed = 35f;
         [SerializeField] private Collider _collider;
 
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
+        }
 
         private void Awake()
         {
@@ -35,7 +41,7 @@ namespace Assets.Scripts.Items
             {
                 coinDetector.CollectCoin(_coinPoints);
                 StartCoroutine("CallEventsThenDisableAfterDelay");
-            }    
+            }
         }
 
         private IEnumerator CallEventsThenDisableAfterDelay()

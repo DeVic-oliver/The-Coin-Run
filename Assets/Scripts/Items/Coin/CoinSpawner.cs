@@ -1,11 +1,12 @@
 ﻿namespace Assets.Scripts.Items
 {
+    using Photon.Pun;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
     [RequireComponent(typeof(CoinPool))]
-    public class CoinSpawner : MonoBehaviour
+    public class CoinSpawner : MonoBehaviourPun
     {
         [SerializeField] private Coin _coin;
         [SerializeField] private List<MinMaxCoordinates> _coordinatesToSpawn;
@@ -28,7 +29,7 @@
         {
             StartCoroutine("SpawnCoins");
         }
-        
+
         private IEnumerator SpawnCoins()
         {
             float secondsToSpawn = 0.8f;
@@ -37,16 +38,22 @@
                 yield return new WaitForSeconds(secondsToSpawn);
                 if (_coinPool.CurrentActiveAtMoment < _coinPool.MaxSize)
                 {
-                    GetCoinFromPoolThenActiveIt();
+                    Vector3 randomPosition = GetRandomCoordinateYoSpawn();
+                    photonView.RPC("GetCoinFromPoolThenActiveIt", RpcTarget.All, randomPosition);
                 }
             }
         }
 
-        private void GetCoinFromPoolThenActiveIt()
+        [PunRPC]
+        private void GetCoinFromPoolThenActiveIt(Vector3 position)
         {
             Coin coin = _coinPool.Pool.Get();
-            coin.Spawner = this;
-            coin.gameObject.transform.position = GetRandomCoordinateYoSpawn();
+            
+            if(coin.Spawner == null)
+                coin.Spawner = this;
+
+            
+            coin.SetPosition(position);
             coin.gameObject.SetActive(true);
         }
 
