@@ -12,6 +12,7 @@
     {
         [SerializeField] private SceneManagerGateway _sceneGateway;
 
+        [SerializeField] private EndGameScoreboard _endScoreboard;
 
         [Header("Master Setup")]
         [SerializeField] private Transform _spawn1;
@@ -53,11 +54,17 @@
         }
 
         void LoadArena()
+        public void ShowScoreBoard()
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
+            int masterPoints = int.Parse(_masterScoreTMP.text);
+            int guestPoints = int.Parse(_guestScoreTMP.text);
 
-            PhotonNetwork.LoadLevel("Arena Multiplayer");
+            AstronautCompetitor master = new(_masterNickTMP.text, masterPoints);
+            AstronautCompetitor guest = new(_guestNickTMP.text, guestPoints);
+
+            _endScoreboard.SetTheWinnderAndLoser(master, guest);
         }
 
         private void Awake()
