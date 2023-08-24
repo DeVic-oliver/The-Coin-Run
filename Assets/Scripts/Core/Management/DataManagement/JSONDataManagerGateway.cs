@@ -21,7 +21,7 @@
         public void UpdateBestScoreTMP()
         {
             int previousScore = PlayerDataJSONParser.GetBestScore();
-            _bestScoreTMP.text = $"{previousScore} pts";
+            _bestScoreTMP.text = previousScore.ToString();
         }
 
     }

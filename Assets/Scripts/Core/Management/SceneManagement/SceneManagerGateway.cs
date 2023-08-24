@@ -13,6 +13,21 @@
         private SceneLoader _sceneLoader;
 
         
+        public void GoToSinglePlayerArena()
+        {
+            _sceneLoader.GoToSinglePlayer();
+        }
+
+        public void BackToLobby()
+        {
+            _sceneLoader.BackToLobby();
+        }
+
+        public void QuitGame()
+        {
+            _sceneLoader.QuitGame();
+        }
+
         public bool IsGamePaused()
         {
             return _scenePauser.IsGamePaused();
