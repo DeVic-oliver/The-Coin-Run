@@ -30,6 +30,7 @@
         private CoinDetector _guestCoinDetector;
 
         private static GameObject _host;
+        private static GameObject _guest;
 
 
         public override void OnPlayerEnteredRoom(Player other)
@@ -99,13 +100,10 @@
         private void SetPlayerInTheirSpawnPositions()
         {
             if (PhotonNetwork.IsMasterClient && _host == null)
-            {
                 _host = PhotonNetwork.Instantiate(_masterPrefabResource.name, _spawn1.position, _spawn1.rotation);
-            }
-            else
-            {
-                PhotonNetwork.Instantiate(_guestPrefabResource.name, _spawn2.position, _spawn2.rotation);
-            }
+
+            if(!PhotonNetwork.IsMasterClient && _guest == null)
+                _guest = PhotonNetwork.Instantiate(_guestPrefabResource.name, _spawn2.position, _spawn2.rotation);
         }
 
         private void Start()
